@@ -71,7 +71,8 @@
     # Git signing
     signing = {
       format = "ssh";
-      key    = "~/.ssh/git-signing";
+      key = "~/.ssh/git-signing";
+      signByDefault = true;
     };
 
     init.defaultBranch = "main";
