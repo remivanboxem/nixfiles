@@ -17,7 +17,7 @@
   services.greetd = {
     enable = true;
     settings.default_session = {
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+      command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
       user    = "greeter";
     };
   };
@@ -45,7 +45,7 @@
 
   fonts.packages = with pkgs; [
     noto-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     liberation_ttf
     nerd-fonts.jetbrains-mono
     corefonts   # Microsoft font pack

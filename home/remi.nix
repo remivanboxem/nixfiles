@@ -202,7 +202,7 @@
     yubioath-flutter
 
     # VPN
-    protonvpn-gui
+    proton-vpn
     openvpn
 
     # Printing
