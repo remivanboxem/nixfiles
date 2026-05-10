@@ -1,10 +1,19 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [ swaylock swayidle xwayland ];
+    extraPackages = with pkgs; [
+      swaylock
+      swayidle
+      xwayland
+    ];
   };
 
   xdg.portal = {
@@ -18,28 +27,28 @@
     enable = true;
     settings.default_session = {
       command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
-      user    = "greeter";
+      user = "greeter";
     };
   };
 
-  security.rtkit.enable  = true;
+  security.rtkit.enable = true;
   security.polkit.enable = true;
 
   services.pipewire = {
-    enable            = true;
-    alsa.enable       = true;
+    enable = true;
+    alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable      = true;
-    jack.enable       = true;
+    pulse.enable = true;
+    jack.enable = true;
   };
 
   hardware.pulseaudio.enable = false;
-  hardware.graphics.enable   = true;
+  hardware.graphics.enable = true;
 
   environment.sessionVariables = {
-    NIXOS_OZONE_WL          = "1";
-    MOZ_ENABLE_WAYLAND      = "1";
-    XDG_SESSION_TYPE        = "wayland";
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    XDG_SESSION_TYPE = "wayland";
     WLR_NO_HARDWARE_CURSORS = "1";
   };
 
@@ -48,10 +57,10 @@
     noto-fonts-color-emoji
     liberation_ttf
     nerd-fonts.jetbrains-mono
-    corefonts   # Microsoft font pack
+    corefonts # Microsoft font pack
     adwaita-fonts
     iosevka
-    montserrat  # UCLouvain font
+    montserrat # UCLouvain font
     eb-garamond # UCLouvain font
   ];
 }

@@ -1,9 +1,14 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   # Podman
   virtualisation.podman = {
-    enable       = true;
+    enable = true;
     dockerCompat = true;
     defaultNetwork.settings.dns_enabled = true;
   };
@@ -12,9 +17,9 @@
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
-      package       = pkgs.qemu_kvm;
-      runAsRoot     = false;
-      swtpm.enable  = true;
+      package = pkgs.qemu_kvm;
+      runAsRoot = false;
+      swtpm.enable = true;
     };
   };
 
@@ -22,5 +27,8 @@
 
   virtualisation.spiceUSBRedirection.enable = true;
 
-  users.users.remi.extraGroups = [ "libvirtd" "podman" ];
+  users.users.remi.extraGroups = [
+    "libvirtd"
+    "podman"
+  ];
 }

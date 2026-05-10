@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -11,13 +16,13 @@
 
   networking.hostName = "se25-285";
 
-  boot.loader.systemd-boot.enable      = true;
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.kernelModules = [ "i915" ];
 
   hardware.graphics = {
-    enable      = true;
+    enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver

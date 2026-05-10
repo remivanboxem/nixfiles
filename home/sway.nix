@@ -1,24 +1,31 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
-let mod = "Mod4"; in
+let
+  mod = "Mod4";
+in
 {
   wayland.windowManager.sway = {
     enable = true;
     config = {
       modifier = mod;
       terminal = "foot";
-      menu     = "fuzzel";
-      bars     = [];
+      menu = "fuzzel";
+      bars = [ ];
 
       input = {
         "type:keyboard" = {
-          xkb_layout  = "fr";
+          xkb_layout = "fr";
           xkb_options = "caps:escape";
         };
         "type:touchpad" = {
-          tap            = "enabled";
+          tap = "enabled";
           natural_scroll = "enabled";
-          dwt            = "enabled";
+          dwt = "enabled";
         };
       };
 
@@ -50,53 +57,61 @@ let mod = "Mod4"; in
           "${mod}+Shift+e" = "exec swaymsg exit";
           "${mod}+ctrl+l" = "exec swaylock -f -c 282828";
 
-          "${mod}+Print"       = "exec grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png";
-          "${mod}+Shift+Print" = "exec grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png";
+          "${mod}+Print" = "exec grim ~/media/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png";
+          "${mod}+Shift+Print" =
+            "exec grim -g \"$(slurp)\" ~/media/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png";
 
-          "XF86AudioRaiseVolume"  = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-          "XF86AudioLowerVolume"  = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-          "XF86AudioMute"         = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-          "XF86MonBrightnessUp"   = "exec brightnessctl set +10%";
+          "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
           "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
-          "XF86AudioPlay"         = "exec playerctl play-pause";
-          "XF86AudioNext"         = "exec playerctl next";
-          "XF86AudioPrev"         = "exec playerctl previous";
-        } // {
+          "XF86AudioPlay" = "exec playerctl play-pause";
+          "XF86AudioNext" = "exec playerctl next";
+          "XF86AudioPrev" = "exec playerctl previous";
+        }
+        // {
           # AZERTY workspace bindings (unshifted keys on the number row)
-          "${mod}+ampersand"        = "workspace number 1";
-          "${mod}+eacute"           = "workspace number 2";
-          "${mod}+quotedbl"         = "workspace number 3";
-          "${mod}+apostrophe"       = "workspace number 4";
-          "${mod}+parenleft"        = "workspace number 5";
-          "${mod}+minus"            = "workspace number 6";
-          "${mod}+egrave"           = "workspace number 7";
-          "${mod}+underscore"       = "workspace number 8";
-          "${mod}+ccedilla"         = "workspace number 9";
-          "${mod}+Shift+ampersand"  = "move container to workspace number 1";
-          "${mod}+Shift+eacute"     = "move container to workspace number 2";
-          "${mod}+Shift+quotedbl"   = "move container to workspace number 3";
+          "${mod}+ampersand" = "workspace number 1";
+          "${mod}+eacute" = "workspace number 2";
+          "${mod}+quotedbl" = "workspace number 3";
+          "${mod}+apostrophe" = "workspace number 4";
+          "${mod}+parenleft" = "workspace number 5";
+          "${mod}+minus" = "workspace number 6";
+          "${mod}+egrave" = "workspace number 7";
+          "${mod}+underscore" = "workspace number 8";
+          "${mod}+ccedilla" = "workspace number 9";
+          "${mod}+Shift+ampersand" = "move container to workspace number 1";
+          "${mod}+Shift+eacute" = "move container to workspace number 2";
+          "${mod}+Shift+quotedbl" = "move container to workspace number 3";
           "${mod}+Shift+apostrophe" = "move container to workspace number 4";
-          "${mod}+Shift+parenleft"  = "move container to workspace number 5";
-          "${mod}+Shift+minus"      = "move container to workspace number 6";
-          "${mod}+Shift+egrave"     = "move container to workspace number 7";
+          "${mod}+Shift+parenleft" = "move container to workspace number 5";
+          "${mod}+Shift+minus" = "move container to workspace number 6";
+          "${mod}+Shift+egrave" = "move container to workspace number 7";
           "${mod}+Shift+underscore" = "move container to workspace number 8";
-          "${mod}+Shift+ccedilla"   = "move container to workspace number 9";
+          "${mod}+Shift+ccedilla" = "move container to workspace number 9";
         }
       );
 
       startup = [
         { command = "waybar"; }
         { command = "mako"; }
-        { command = "wl-paste --watch cliphist store"; always = true; }
+        {
+          command = "wl-paste --watch cliphist store";
+          always = true;
+        }
         { command = "nm-applet --indicator"; }
         { command = "blueman-applet"; }
         { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
-        { command = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh"; }
         {
-          command = ''swayidle -w \
-            timeout 300 'swaymsg "output * dpms off"' \
-            resume 'swaymsg "output * dpms on"' \
-            before-sleep 'swaylock -f -c 282828' '';
+          command = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh";
+        }
+        {
+          command = ''
+            swayidle -w \
+                        timeout 300 'swaymsg "output * dpms off"' \
+                        resume 'swaymsg "output * dpms on"' \
+                        before-sleep 'swaylock -f -c 282828' '';
         }
       ];
     };
@@ -104,43 +119,63 @@ let mod = "Mod4"; in
 
   programs.waybar = {
     enable = true;
-    settings = [{
-      layer    = "top";
-      position = "top";
-      height   = 30;
+    settings = [
+      {
+        layer = "top";
+        position = "top";
+        height = 30;
 
-      modules-left   = [ "sway/workspaces" "sway/mode" ];
-      modules-center = [ "sway/window" ];
-      modules-right  = [ "pulseaudio" "network" "battery" "clock" "tray" ];
+        modules-left = [
+          "sway/workspaces"
+          "sway/mode"
+        ];
+        modules-center = [ "sway/window" ];
+        modules-right = [
+          "pulseaudio"
+          "network"
+          "battery"
+          "clock"
+          "tray"
+        ];
 
-      "sway/workspaces".disable-scroll = true;
+        "sway/workspaces".disable-scroll = true;
 
-      "clock" = {
-        format     = " {:%H:%M}";
-        format-alt = " {:%Y-%m-%d %H:%M:%S}";
-      };
+        "clock" = {
+          format = " {:%H:%M}";
+          format-alt = " {:%Y-%m-%d %H:%M:%S}";
+        };
 
-      "battery" = {
-        format          = "{icon} {capacity}%";
-        format-charging = " {capacity}%";
-        format-icons    = [ "" "" "" "" "" ];
-        states          = { warning = 30; critical = 15; };
-      };
+        "battery" = {
+          format = "{icon} {capacity}%";
+          format-charging = " {capacity}%";
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+        };
 
-      "network" = {
-        format-wifi        = " {essid} ({signalStrength}%)";
-        format-ethernet    = " {ipaddr}";
-        format-disconnected = "Disconnected";
-      };
+        "network" = {
+          format-wifi = " {essid} ({signalStrength}%)";
+          format-ethernet = " {ipaddr}";
+          format-disconnected = "Disconnected";
+        };
 
-      "pulseaudio" = {
-        format       = "{icon} {volume}%";
-        format-muted = " Muted";
-        on-click     = "pavucontrol";
-      };
+        "pulseaudio" = {
+          format = "{icon} {volume}%";
+          format-muted = " Muted";
+          on-click = "pavucontrol";
+        };
 
-      "tray".spacing = 10;
-    }];
+        "tray".spacing = 10;
+      }
+    ];
 
     style = ''
       * {
@@ -178,24 +213,24 @@ let mod = "Mod4"; in
     enable = true;
     settings = {
       main = {
-        font      = "JetBrainsMono Nerd Font:size=11";
+        font = "JetBrainsMono Nerd Font:size=11";
         dpi-aware = "auto";
-        width     = 35;
-        lines     = 10;
-        terminal  = "foot";
+        width = 35;
+        lines = 10;
+        terminal = "foot";
       };
       colors = {
-        background      = "282828ff";
-        text            = "ebdbb2ff";
-        match           = "fabd2fff";
-        selection       = "3c3836ff";
-        selection-text  = "ebdbb2ff";
+        background = "282828ff";
+        text = "ebdbb2ff";
+        match = "fabd2fff";
+        selection = "3c3836ff";
+        selection-text = "ebdbb2ff";
         selection-match = "fabd2fff";
-        border          = "fabd2fff";
+        border = "fabd2fff";
       };
       border = {
         radius = 4;
-        width  = 2;
+        width = 2;
       };
     };
   };
@@ -204,29 +239,29 @@ let mod = "Mod4"; in
     enable = true;
     settings = {
       main = {
-        font      = "JetBrainsMono Nerd Font:size=11";
+        font = "JetBrainsMono Nerd Font:size=11";
         dpi-aware = "auto";
       };
       mouse.hide-when-typing = "yes";
       colors = {
         background = "282828";
         foreground = "ebdbb2";
-        regular0   = "282828";
-        regular1   = "cc241d";
-        regular2   = "98971a";
-        regular3   = "d79921";
-        regular4   = "458588";
-        regular5   = "b16286";
-        regular6   = "689d6a";
-        regular7   = "a89984";
-        bright0    = "928374";
-        bright1    = "fb4934";
-        bright2    = "b8bb26";
-        bright3    = "fabd2f";
-        bright4    = "83a598";
-        bright5    = "d3869b";
-        bright6    = "8ec07c";
-        bright7    = "ebdbb2";
+        regular0 = "282828";
+        regular1 = "cc241d";
+        regular2 = "98971a";
+        regular3 = "d79921";
+        regular4 = "458588";
+        regular5 = "b16286";
+        regular6 = "689d6a";
+        regular7 = "a89984";
+        bright0 = "928374";
+        bright1 = "fb4934";
+        bright2 = "b8bb26";
+        bright3 = "fabd2f";
+        bright4 = "83a598";
+        bright5 = "d3869b";
+        bright6 = "8ec07c";
+        bright7 = "ebdbb2";
       };
     };
   };
@@ -235,10 +270,10 @@ let mod = "Mod4"; in
     enable = true;
     settings = {
       background-color = "#282828";
-      text-color       = "#ebdbb2";
-      border-color     = "#fabd2f";
-      border-radius    = 4;
-      default-timeout  = 5000;
+      text-color = "#ebdbb2";
+      border-color = "#fabd2f";
+      border-radius = 4;
+      default-timeout = 5000;
     };
   };
 

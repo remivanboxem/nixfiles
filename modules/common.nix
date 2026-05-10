@@ -1,11 +1,20 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store   = true;
-    keep-derivations      = true;
-    keep-outputs          = true;
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    auto-optimise-store = true;
+    keep-derivations = true;
+    keep-outputs = true;
   };
 
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
@@ -15,27 +24,37 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
-    LC_ADDRESS        = "en_GB.UTF-8";
+    LC_ADDRESS = "en_GB.UTF-8";
     LC_IDENTIFICATION = "en_GB.UTF-8";
-    LC_MEASUREMENT    = "en_GB.UTF-8";
-    LC_MONETARY       = "en_GB.UTF-8";
-    LC_NAME           = "en_GB.UTF-8";
-    LC_PAPER          = "en_GB.UTF-8";
-    LC_TELEPHONE      = "en_GB.UTF-8";
-    LC_TIME           = "en_GB.UTF-8";
+    LC_MEASUREMENT = "en_GB.UTF-8";
+    LC_MONETARY = "en_GB.UTF-8";
+    LC_NAME = "en_GB.UTF-8";
+    LC_PAPER = "en_GB.UTF-8";
+    LC_TELEPHONE = "en_GB.UTF-8";
+    LC_TIME = "en_GB.UTF-8";
   };
 
   users.users.remi = {
     isNormalUser = true;
-    description  = "Rémi Van Boxem";
-    extraGroups  = [ "wheel" "video" "audio" "networkmanager" "input" ];
-    shell        = pkgs.fish;
+    description = "Rémi Van Boxem";
+    extraGroups = [
+      "wheel"
+      "video"
+      "audio"
+      "networkmanager"
+      "input"
+    ];
+    shell = pkgs.fish;
   };
 
   programs.fish.enable = true;
 
   environment.systemPackages = with pkgs; [
-    git curl wget vim htop
+    git
+    curl
+    wget
+    vim
+    htop
   ];
 
   hardware.enableRedistributableFirmware = true;
@@ -44,8 +63,8 @@
 
   services.printing.enable = true;
   services.avahi = {
-    enable       = true;
-    nssmdns4     = true;
+    enable = true;
+    nssmdns4 = true;
     openFirewall = true;
   };
 
@@ -57,8 +76,8 @@
 
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];
-    path     = [ pkgs.flatpak ];
-    script   = ''
+    path = [ pkgs.flatpak ];
+    script = ''
       flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     '';
   };

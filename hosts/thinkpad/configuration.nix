@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -11,16 +16,16 @@
 
   networking.hostName = "thinkpad";
 
-  boot.loader.systemd-boot.enable      = true;
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   hardware.graphics = {
-    enable32Bit   = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [
-      amdvlk                # AMD Vulkan driver
-      rocmPackages.clr.icd  # OpenCL / compute (optional, for GPU workloads)
+      amdvlk # AMD Vulkan driver
+      rocmPackages.clr.icd # OpenCL / compute (optional, for GPU workloads)
     ];
   };
 

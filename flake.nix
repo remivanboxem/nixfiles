@@ -9,27 +9,36 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-  let
-    mkSystem = host: system: nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./hosts/${host}/configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs      = true;
-          home-manager.useUserPackages    = true;
-          home-manager.extraSpecialArgs   = { inherit inputs; };
-          home-manager.users.remi         = import ./home/remi.nix;
-        }
-      ];
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      mkSystem =
+        host: system:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/${host}/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users.remi = import ./home/remi.nix;
+            }
+          ];
+        };
+    in
+    {
+      nixosConfigurations = {
+        thinkpad = mkSystem "thinkpad" "x86_64-linux";
+        dell = mkSystem "dell" "x86_64-linux";
+        # server   = mkSystem "server"   "x86_64-linux";
+      };
     };
-  in {
-    nixosConfigurations = {
-      thinkpad = mkSystem "thinkpad" "x86_64-linux";
-      dell     = mkSystem "dell"     "x86_64-linux";
-      # server   = mkSystem "server"   "x86_64-linux";
-    };
-  };
 }

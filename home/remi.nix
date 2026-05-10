@@ -1,47 +1,54 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   imports = [ ./sway.nix ];
 
-  home.username      = "remi";
+  home.username = "remi";
   home.homeDirectory = "/home/remi";
-  home.stateVersion  = "24.11"; # I should upgrade to 26.05
+  home.stateVersion = "24.11"; # I should upgrade to 26.05
 
   programs.home-manager.enable = true;
 
   # ── Sync ──────────────────────────────────────────────────────────────
-  services.syncthing.enable = true;   # port 8384
+  services.syncthing.enable = true; # port 8384
 
   # For nightlight
   services.gammastep = {
-    enable    = true;
+    enable = true;
     # Brussels
-    latitude  = 50.85;
+    latitude = 50.85;
     longitude = 4.35;
     temperature = {
-      day   = 6500;
+      day = 6500;
       night = 3500;
     };
   };
 
   # ── Shell ─────────────────────────────────────────────────────────────
   programs.direnv = {
-    enable            = true;
+    enable = true;
     nix-direnv.enable = true;
   };
 
   programs.fish = {
     enable = true;
     shellAliases = {
-      ll     = "eza -lah";
-      la     = "eza -A";
-      ".."   = "cd ..";
-      "..."  = "cd ../..";
-      nixr   = "sudo nixos-rebuild switch --flake ~/.config/nixfiles#(hostname)";
-      nixu   = "nix flake update ~/.config/nixfiles";
-      g      = "git";
-      gs     = "git status";
-      gd     = "git diff";
+      ls = "eza";
+      ll = "eza -lah";
+      la = "eza -A";
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      nixr = "sudo nixos-rebuild switch --flake ~/.config/nixfiles#(hostname)";
+      nixu = "nix flake update ~/.config/nixfiles";
+      g = "git";
+      gs = "git status";
+      gd = "git diff";
       docker = "podman";
     };
   };
@@ -49,23 +56,24 @@
   programs.starship.enable = true;
 
   programs.zoxide = {
-    enable                = true;
+    enable = true;
     enableFishIntegration = true;
   };
 
   # ── Git ───────────────────────────────────────────────────────────────
   programs.git = {
-    enable    = true;
+    enable = true;
     lfs.enable = true;
 
     # Git settings
     settings = {
-      user.name  = "Rémi Van Boxem";
+      user.name = "Rémi Van Boxem";
       user.email = "remi.vanboxem@uclouvain.be";
-      color.ui   = "auto";
-      pull.rebase          = true;
+      color.ui = "auto";
+      pull.rebase = true;
       push.autoSetupRemote = true;
-      core.editor          = "hx";
+      core.editor = "hx";
+      init.defaultBranch = "main";
     };
 
     # Git signing
@@ -75,11 +83,12 @@
       signByDefault = true;
     };
 
-    init.defaultBranch = "main";
-
     delta = {
-      enable  = true;
-      options = { navigate = true; line-numbers = true; };
+      enable = true;
+      options = {
+        navigate = true;
+        line-numbers = true;
+      };
     };
 
     # Stolen from Bartho's config
@@ -108,10 +117,14 @@
     settings = {
       theme = "gruvbox";
       editor = {
-        line-number  = "relative";
-        cursor-shape = { insert = "bar"; normal = "block"; select = "underline"; };
-        indent-guides.render    = true;
-        file-picker.hidden      = false;
+        line-number = "relative";
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
+        indent-guides.render = true;
+        file-picker.hidden = false;
         lsp.display-inlay-hints = true;
       };
     };
@@ -120,15 +133,15 @@
   programs.zathura = {
     enable = true;
     options = {
-      recolor             = true;
-      recolor-lightcolor  = "#282828";
-      recolor-darkcolor   = "#ebdbb2";
-      default-bg          = "#282828";
-      default-fg          = "#ebdbb2";
-      statusbar-bg        = "#3c3836";
-      statusbar-fg        = "#ebdbb2";
-      inputbar-bg         = "#282828";
-      inputbar-fg         = "#ebdbb2";
+      recolor = true;
+      recolor-lightcolor = "#282828";
+      recolor-darkcolor = "#ebdbb2";
+      default-bg = "#282828";
+      default-fg = "#ebdbb2";
+      statusbar-bg = "#3c3836";
+      statusbar-fg = "#ebdbb2";
+      inputbar-bg = "#282828";
+      inputbar-fg = "#ebdbb2";
       selection-clipboard = "clipboard";
     };
   };
@@ -138,14 +151,21 @@
 
   # ── Email ─────────────────────────────────────────────────────────────
   programs.thunderbird = {
-    enable   = true;
-    profiles = {};
+    enable = true;
+    profiles = { };
   };
 
   # ── Packages ──────────────────────────────────────────────────────────
   home.packages = with pkgs; [
     # CLI utilities
-    ripgrep fd bat eza fzf jq unzip zip
+    ripgrep
+    fd
+    bat
+    eza
+    fzf
+    jq
+    unzip
+    zip
 
     # Editors
     zed-editor
@@ -203,10 +223,10 @@
     podman-compose
 
     # Language servers for Helix (auto-detected when in PATH)
-    ruff          # Python linter + formatter + LSP
-    basedpyright  # Python type checking + completions
-    texlab        # LaTeX LSP
-    nil           # Nix LSP
+    ruff # Python linter + formatter + LSP
+    basedpyright # Python type checking + completions
+    texlab # LaTeX LSP
+    nil # Nix LSP
 
     # YubiKey
     yubikey-manager
