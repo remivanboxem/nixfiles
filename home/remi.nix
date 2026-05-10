@@ -56,15 +56,25 @@
   # ── Git ───────────────────────────────────────────────────────────────
   programs.git = {
     enable    = true;
-    userName  = "Rémi Van Boxem";
-    userEmail = "remi.vanboxem@uclouvain.be";
+    lfs.enable = true;
 
-    extraConfig = {
-      init.defaultBranch   = "main";
+    # Git settings
+    settings = {
+      user.name  = "Rémi Van Boxem";
+      user.email = "remi.vanboxem@uclouvain.be";
+      color.ui   = "auto";
       pull.rebase          = true;
       push.autoSetupRemote = true;
       core.editor          = "hx";
     };
+
+    # Git signing
+    signing = {
+      format = "ssh";
+      key    = "~/.ssh/git-signing";
+    };
+
+    init.defaultBranch = "main";
 
     delta = {
       enable  = true;
