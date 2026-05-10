@@ -240,10 +240,10 @@ in
     settings = {
       main = {
         font = "JetBrainsMono Nerd Font:size=11";
-        dpi-aware = "auto";
+        dpi-aware = "on";
       };
       mouse.hide-when-typing = "yes";
-      colors = {
+      colors-dark = {
         background = "282828";
         foreground = "ebdbb2";
         regular0 = "282828";
