@@ -24,10 +24,10 @@
   services.logind = {
     lidSwitch              = "suspend";
     lidSwitchExternalPower = "suspend";
-    extraConfig = ''
-      HandlePowerKey=suspend
-      IdleAction=ignore
-    '';
+    settings.Login = {
+      HandlePowerKey = "suspend";
+      IdleAction     = "ignore";
+    };
   };
 
   boot.kernelParams = [
