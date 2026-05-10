@@ -9,7 +9,7 @@
     ../../modules/virtualisation.nix
   ];
 
-  networking.hostName = "dell";
+  networking.hostName = "se25-285";
 
   boot.loader.systemd-boot.enable      = true;
   boot.loader.efi.canTouchEfiVariables = true;
