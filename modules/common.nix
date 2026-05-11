@@ -62,7 +62,11 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.samba ];
+  };
+
   services.avahi = {
     enable = true;
     nssmdns4 = true;
