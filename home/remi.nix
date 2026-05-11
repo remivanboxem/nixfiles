@@ -180,6 +180,7 @@
     # Productivity
     bitwarden-desktop
     libreoffice-fresh
+    obsidian
 
     # File manager
     yazi
