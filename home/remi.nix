@@ -50,6 +50,7 @@
       gs = "git status";
       gd = "git diff";
       docker = "podman";
+      open = "xdg-open";
     };
   };
 
