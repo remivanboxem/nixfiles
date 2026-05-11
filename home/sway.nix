@@ -20,7 +20,7 @@ in
       input = {
         "type:keyboard" = {
           xkb_layout = "fr";
-          xkb_options = "caps:escape";
+          # xkb_options = "caps:escape";
         };
         "type:touchpad" = {
           tap = "enabled";
