@@ -30,8 +30,16 @@ in
       };
 
       output = {
-        # "DP-1" = { mode = "2560x1440@100Hz"; scale = "1"; pos = "0 0"; };   # USB-C primary (2K 100 Hz)
-        # "DP-2" = { mode = "3840x2160@60Hz";  scale = "2"; pos = "2560 0"; }; # daisy-chained (4K 60 Hz, logical 1920×1080)
+        "DP-3" = {
+          mode = "2560x1440@100Hz";
+          scale = "1";
+          pos = "2560 0";
+        }; # USB-C primary (2K 100 Hz)
+        "DP-5" = {
+          mode = "3840x2160@60Hz";
+          scale = "1.5";
+          pos = "0 0";
+        }; # daisy-chained (4K 60 Hz, logical 1920×1080)
         "*".bg = "#282828 solid_color";
       };
 
@@ -52,6 +60,7 @@ in
           "${mod}+Shift+l" = "move right";
           "${mod}+b" = "splith";
           "${mod}+v" = "splitv";
+          "${mod}+m" = "output eDP-1 toggle";
           "${mod}+e" = "layout toggle split";
           "${mod}+Shift+c" = "reload";
           "${mod}+Shift+e" = "exec swaymsg exit";
