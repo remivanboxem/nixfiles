@@ -55,6 +55,7 @@
     wget
     vim
     htop
+    nixd
   ];
 
   hardware.enableRedistributableFirmware = true;
