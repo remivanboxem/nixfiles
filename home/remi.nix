@@ -182,6 +182,7 @@
     bitwarden-desktop
     libreoffice-fresh
     obsidian
+    inkscape
 
     # File manager
     yazi
