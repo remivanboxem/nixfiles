@@ -7,6 +7,7 @@
 
 let
   mod = "Mod4";
+  laptop = "eDP-1";
 in
 {
   wayland.windowManager.sway = {
@@ -16,6 +17,19 @@ in
       terminal = "foot";
       menu = "fuzzel";
       bars = [ ];
+
+      bindswitches = {
+        "lid:on" = {
+          reload = true;
+          locked = true;
+          action = "output ${laptop} disable";
+        };
+        "lid:off" = {
+          reload = true;
+          locked = true;
+          action = "output ${laptop} enable";
+        };
+      };
 
       input = {
         "type:keyboard" = {
@@ -60,7 +74,6 @@ in
           "${mod}+Shift+l" = "move right";
           "${mod}+b" = "splith";
           "${mod}+v" = "splitv";
-          "${mod}+m" = "output eDP-1 toggle";
           "${mod}+e" = "layout toggle split";
           "${mod}+Shift+c" = "reload";
           "${mod}+Shift+e" = "exec swaymsg exit";
