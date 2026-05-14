@@ -116,7 +116,7 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "gruvbox";
+      theme = "gruvbox_light";
       editor = {
         line-number = "relative";
         cursor-shape = {
@@ -135,14 +135,14 @@
     enable = true;
     options = {
       recolor = true;
-      recolor-lightcolor = "#282828";
-      recolor-darkcolor = "#ebdbb2";
-      default-bg = "#282828";
-      default-fg = "#ebdbb2";
-      statusbar-bg = "#3c3836";
-      statusbar-fg = "#ebdbb2";
-      inputbar-bg = "#282828";
-      inputbar-fg = "#ebdbb2";
+      recolor-lightcolor = "#fbf1c7";
+      recolor-darkcolor = "#3c3836";
+      default-bg = "#fbf1c7";
+      default-fg = "#3c3836";
+      statusbar-bg = "#ebdbb2";
+      statusbar-fg = "#3c3836";
+      inputbar-bg = "#fbf1c7";
+      inputbar-fg = "#3c3836";
       selection-clipboard = "clipboard";
     };
   };

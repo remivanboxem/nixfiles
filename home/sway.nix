@@ -54,7 +54,7 @@ in
           scale = "1.5";
           pos = "0 0";
         }; # daisy-chained (4K 60 Hz, logical 1920×1080)
-        "*".bg = "#282828 solid_color";
+        "*".bg = "#fbf1c7 solid_color";
       };
 
       keybindings = lib.mkOptionDefault (
@@ -77,7 +77,7 @@ in
           "${mod}+e" = "layout toggle split";
           "${mod}+Shift+c" = "reload";
           "${mod}+Shift+e" = "exec swaymsg exit";
-          "${mod}+ctrl+l" = "exec swaylock -f -c 282828";
+          "${mod}+ctrl+l" = "exec swaylock -f -c fbf1c7";
 
           "${mod}+Print" = "exec grim ~/media/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png";
           "${mod}+Shift+Print" =
@@ -133,7 +133,7 @@ in
             swayidle -w \
                         timeout 300 'swaymsg "output * dpms off"' \
                         resume 'swaymsg "output * dpms on"' \
-                        before-sleep 'swaylock -f -c 282828' '';
+                        before-sleep 'swaylock -f -c fbf1c7' '';
         }
       ];
     };
@@ -208,26 +208,26 @@ in
         min-height: 0;
       }
       window#waybar {
-        background-color: rgba(40, 40, 40, 0.95);
-        color: #ebdbb2;
+        background-color: rgba(251, 241, 199, 0.95);
+        color: #3c3836;
       }
       #workspaces button {
         padding: 0 5px;
-        color: #a89984;
+        color: #7c6f64;
       }
       #workspaces button.focused {
-        background-color: #3c3836;
-        color: #ebdbb2;
+        background-color: #ebdbb2;
+        color: #3c3836;
       }
       #workspaces button:hover {
-        background-color: #504945;
+        background-color: #d5c4a1;
       }
       #clock, #battery, #network, #pulseaudio, #tray {
         padding: 0 10px;
-        color: #ebdbb2;
+        color: #3c3836;
       }
-      #battery.warning { color: #fabd2f; }
-      #battery.critical { color: #fb4934; }
+      #battery.warning { color: #b57614; }
+      #battery.critical { color: #9d0006; }
     '';
   };
 
@@ -242,13 +242,13 @@ in
         terminal = "foot";
       };
       colors = {
-        background = "282828ff";
-        text = "ebdbb2ff";
-        match = "fabd2fff";
-        selection = "3c3836ff";
-        selection-text = "ebdbb2ff";
-        selection-match = "fabd2fff";
-        border = "fabd2fff";
+        background = "fbf1c7ff";
+        text = "3c3836ff";
+        match = "b57614ff";
+        selection = "ebdbb2ff";
+        selection-text = "3c3836ff";
+        selection-match = "b57614ff";
+        border = "b57614ff";
       };
       border = {
         radius = 4;
@@ -263,27 +263,28 @@ in
       main = {
         font = "JetBrainsMono Nerd Font:size=11";
         dpi-aware = "on";
+        initial-color-theme = "light";
       };
       mouse.hide-when-typing = "yes";
-      colors-dark = {
-        background = "282828";
-        foreground = "ebdbb2";
-        regular0 = "282828";
+      colors-light = {
+        background = "fbf1c7";
+        foreground = "3c3836";
+        regular0 = "fbf1c7";
         regular1 = "cc241d";
         regular2 = "98971a";
         regular3 = "d79921";
         regular4 = "458588";
         regular5 = "b16286";
         regular6 = "689d6a";
-        regular7 = "a89984";
+        regular7 = "7c6f64";
         bright0 = "928374";
-        bright1 = "fb4934";
-        bright2 = "b8bb26";
-        bright3 = "fabd2f";
-        bright4 = "83a598";
-        bright5 = "d3869b";
-        bright6 = "8ec07c";
-        bright7 = "ebdbb2";
+        bright1 = "9d0006";
+        bright2 = "79740e";
+        bright3 = "b57614";
+        bright4 = "076678";
+        bright5 = "8f3f71";
+        bright6 = "427b58";
+        bright7 = "3c3836";
       };
     };
   };
@@ -291,9 +292,9 @@ in
   services.mako = {
     enable = true;
     settings = {
-      background-color = "#282828";
-      text-color = "#ebdbb2";
-      border-color = "#fabd2f";
+      background-color = "#fbf1c7";
+      text-color = "#3c3836";
+      border-color = "#b57614";
       border-radius = 4;
       default-timeout = 5000;
     };
