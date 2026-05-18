@@ -176,7 +176,7 @@
 
     # Communication
     slack
-    vesktop
+    discord
 
     # Productivity
     bitwarden-desktop
