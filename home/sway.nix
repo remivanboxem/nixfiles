@@ -223,7 +223,7 @@ in
   programs.foot = {
     enable = true;
     settings = {
-      main.dpi-aware = "on";
+      main.dpi-aware = lib.mkForce "on";
       mouse.hide-when-typing = "yes";
     };
   };
