@@ -70,7 +70,11 @@
 
   services.printing = {
     enable = true;
-    drivers = [ pkgs.samba ];
+    drivers = with pkgs; [
+      samba            # SMB/CIFS backend for smb:// URIs
+      foomatic-db-ppds # PPD database (includes Ricoh IM C5510)
+      foomatic-db-engine
+    ];
   };
 
   services.avahi = {
