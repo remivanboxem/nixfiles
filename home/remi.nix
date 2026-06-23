@@ -221,7 +221,7 @@
     # Communication
     slack
     discord
-    pkgs.betterbird
+    betterbird
 
     # Productivity
     bitwarden-desktop
