@@ -116,7 +116,6 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "gruvbox_light";
       editor = {
         line-number = "relative";
         cursor-shape = {
@@ -135,16 +134,22 @@
     enable = true;
     options = {
       recolor = true;
-      recolor-lightcolor = "#fbf1c7";
-      recolor-darkcolor = "#3c3836";
-      default-bg = "#fbf1c7";
-      default-fg = "#3c3836";
-      statusbar-bg = "#ebdbb2";
-      statusbar-fg = "#3c3836";
-      inputbar-bg = "#fbf1c7";
-      inputbar-fg = "#3c3836";
       selection-clipboard = "clipboard";
     };
+  };
+
+  # ── Theming ───────────────────────────────────────────────────────────
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Light";
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
   };
 
   # ── Browsers ──────────────────────────────────────────────────────────
@@ -188,7 +193,6 @@
     yazi
 
     # Viewers & media
-    zathura
     imv
     mpv
 

@@ -77,7 +77,7 @@ in
           "${mod}+e" = "layout toggle split";
           "${mod}+Shift+c" = "reload";
           "${mod}+Shift+e" = "exec swaymsg exit";
-          "${mod}+ctrl+l" = "exec swaylock -f -c fbf1c7";
+          "${mod}+ctrl+l" = "exec swaylock -f";
 
           "${mod}+Print" = "exec grim ~/media/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png";
           "${mod}+Shift+Print" =
@@ -133,7 +133,7 @@ in
             swayidle -w \
                         timeout 300 'swaymsg "output * dpms off"' \
                         resume 'swaymsg "output * dpms on"' \
-                        before-sleep 'swaylock -f -c fbf1c7' '';
+                        before-sleep 'swaylock -f' '';
         }
       ];
     };
@@ -203,31 +203,18 @@ in
       * {
         border: none;
         border-radius: 0;
-        font-family: "JetBrainsMono Nerd Font", monospace;
         font-size: 13px;
         min-height: 0;
       }
-      window#waybar {
-        background-color: rgba(251, 241, 199, 0.95);
-        color: #3c3836;
-      }
       #workspaces button {
         padding: 0 5px;
-        color: #7c6f64;
       }
       #workspaces button.focused {
-        background-color: #ebdbb2;
-        color: #3c3836;
+        font-weight: bold;
       }
-      #workspaces button:hover {
-        background-color: #d5c4a1;
-      }
-      #clock, #battery, #network, #pulseaudio, #tray {
+      #clock, #battery, #network, #wireplumber, #tray {
         padding: 0 10px;
-        color: #3c3836;
       }
-      #battery.warning { color: #b57614; }
-      #battery.critical { color: #9d0006; }
     '';
   };
 
@@ -235,20 +222,10 @@ in
     enable = true;
     settings = {
       main = {
-        font = "JetBrainsMono Nerd Font:size=11";
         dpi-aware = "auto";
         width = 35;
         lines = 10;
         terminal = "foot";
-      };
-      colors = {
-        background = "fbf1c7ff";
-        text = "3c3836ff";
-        match = "b57614ff";
-        selection = "ebdbb2ff";
-        selection-text = "3c3836ff";
-        selection-match = "b57614ff";
-        border = "b57614ff";
       };
       border = {
         radius = 4;
@@ -260,41 +237,14 @@ in
   programs.foot = {
     enable = true;
     settings = {
-      main = {
-        font = "JetBrainsMono Nerd Font:size=11";
-        dpi-aware = "on";
-        initial-color-theme = "light";
-      };
+      main.dpi-aware = "on";
       mouse.hide-when-typing = "yes";
-      colors-light = {
-        background = "fbf1c7";
-        foreground = "3c3836";
-        regular0 = "fbf1c7";
-        regular1 = "cc241d";
-        regular2 = "98971a";
-        regular3 = "d79921";
-        regular4 = "458588";
-        regular5 = "b16286";
-        regular6 = "689d6a";
-        regular7 = "7c6f64";
-        bright0 = "928374";
-        bright1 = "9d0006";
-        bright2 = "79740e";
-        bright3 = "b57614";
-        bright4 = "076678";
-        bright5 = "8f3f71";
-        bright6 = "427b58";
-        bright7 = "3c3836";
-      };
     };
   };
 
   services.mako = {
     enable = true;
     settings = {
-      background-color = "#fbf1c7";
-      text-color = "#3c3836";
-      border-color = "#b57614";
       border-radius = 4;
       default-timeout = 5000;
     };
@@ -306,7 +256,6 @@ in
     grim
     slurp
     wl-clipboard
-    mako
     brightnessctl
     playerctl
     pavucontrol

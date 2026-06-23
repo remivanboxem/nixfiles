@@ -11,12 +11,17 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       self,
       disko,
+      stylix,
       nixpkgs,
       home-manager,
       ...
@@ -29,6 +34,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             disko.nixosModules.disko
+            stylix.nixosModules.stylix
             ./hosts/${host}/configuration.nix
             home-manager.nixosModules.home-manager
             {

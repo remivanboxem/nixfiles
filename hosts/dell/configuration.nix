@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
     ./disko.nix
     ../../modules/common.nix
+    ../../modules/stylix.nix
     ../../modules/laptop.nix
     ../../modules/sway.nix
     ../../modules/virtualisation.nix
