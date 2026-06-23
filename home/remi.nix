@@ -190,10 +190,6 @@
     };
   };
 
-  # ── Browsers ──────────────────────────────────────────────────────────
-  programs.librewolf.enable = true;
-
-  # home/remi.nix
   programs.nix-index = {
     enable = true;
     enableFishIntegration = true;
@@ -217,6 +213,7 @@
 
     # Browsers
     brave
+    firefox
 
     # Communication
     slack
