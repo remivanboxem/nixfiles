@@ -193,10 +193,6 @@
   # ── Browsers ──────────────────────────────────────────────────────────
   programs.librewolf.enable = true;
 
-  # ── Email ─────────────────────────────────────────────────────────────
-  # (betterbird has no home-manager module; configured through the app)
-  home.packages = [ pkgs.betterbird ];
-
   # home/remi.nix
   programs.nix-index = {
     enable = true;
@@ -225,6 +221,7 @@
     # Communication
     slack
     discord
+    pkgs.betterbird
 
     # Productivity
     bitwarden-desktop
