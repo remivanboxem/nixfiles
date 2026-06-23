@@ -43,8 +43,6 @@ in
         };
       };
 
-      output."*".bg = "#fbf1c7 solid_color";
-
       keybindings = lib.mkOptionDefault (
         {
           "${mod}+Return" = "exec foot";
