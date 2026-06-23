@@ -18,7 +18,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.initrd.systemd.enable = true;
   boot.initrd.kernelModules = [ "i915" ];
 
   hardware.graphics = {
