@@ -276,6 +276,7 @@
     ruff # Python linter + formatter + LSP
     basedpyright # Python type checking + completions
     texlab # LaTeX LSP
+    nixd # Nix LSP
     nil # Nix LSP
 
     # YubiKey
