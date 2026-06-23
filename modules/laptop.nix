@@ -38,7 +38,7 @@
   boot.kernelParams = [
     "quiet"
     "loglevel=3"
-    "mem_sleep_default=deep"
+    "mem_sleep_default=s2idle"
   ];
 
   services.upower.enable = true;
