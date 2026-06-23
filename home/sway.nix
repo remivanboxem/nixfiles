@@ -43,19 +43,7 @@ in
         };
       };
 
-      output = {
-        "Dell Inc. DELL P2725DE 5FR0RB4" = {
-          mode = "2560x1440@100Hz";
-          scale = "1";
-          pos = "2560 0";
-        }; # USB-C primary (2K 100 Hz)
-        "Dell Inc. DELL P2715Q 32R1F53S331L" = {
-          mode = "3840x2160@60Hz";
-          scale = "1.5";
-          pos = "0 0";
-        }; # daisy-chained (4K 60 Hz, logical 2560x1440)
-        "*".bg = "#fbf1c7 solid_color";
-      };
+      output."*".bg = "#fbf1c7 solid_color";
 
       keybindings = lib.mkOptionDefault (
         {
@@ -247,6 +235,57 @@ in
     settings = {
       border-radius = 4;
       default-timeout = 5000;
+    };
+  };
+
+  services.kanshi = {
+    enable = true;
+    profiles = {
+      # Both external monitors via USB-C daisy-chain
+      docked = {
+        outputs = [
+          {
+            criteria = "Dell Inc. DELL P2715Q 32R1F53S331L";
+            mode = "3840x2160@60Hz";
+            scale = 1.5;
+            position = "0,0";
+          }
+          {
+            criteria = "Dell Inc. DELL P2725DE 5FR0RB4";
+            mode = "2560x1440@100Hz";
+            scale = 1.0;
+            position = "2560,0";
+          }
+          {
+            criteria = "eDP-1";
+            status = "disable";
+          }
+        ];
+      };
+      # Only the USB-C primary (daisy-chain not connected)
+      single = {
+        outputs = [
+          {
+            criteria = "Dell Inc. DELL P2725DE 5FR0RB4";
+            mode = "2560x1440@100Hz";
+            scale = 1.0;
+            position = "0,0";
+          }
+          {
+            criteria = "eDP-1";
+            status = "disable";
+          }
+        ];
+      };
+      # No external monitors
+      undocked = {
+        outputs = [
+          {
+            criteria = "eDP-1";
+            status = "enable";
+          }
+        ];
+      };
     };
   };
 
