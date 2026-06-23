@@ -152,6 +152,44 @@
     platformTheme.name = "gtk";
   };
 
+  # ── Directories & defaults ────────────────────────────────────────────
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    documents = "$HOME/docs";
+    pictures = "$HOME/media/pictures";
+    videos = "$HOME/media/videos";
+    music = "$HOME/media/music";
+    download = "$HOME/dl";
+    projects = "$HOME/dev";
+    # suppress unwanted standard directories
+    desktop = "$HOME";
+    templates = "$HOME";
+    publicShare = "$HOME";
+  };
+
+  home.activation.createExtraDirs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mkdir -p $HOME/notes $HOME/media/screenshots
+  '';
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "librewolf.desktop";
+      "x-scheme-handler/http" = "librewolf.desktop";
+      "x-scheme-handler/https" = "librewolf.desktop";
+      "application/pdf" = "org.pwmt.zathura.desktop";
+      "image/png" = "imv.desktop";
+      "image/jpeg" = "imv.desktop";
+      "image/gif" = "imv.desktop";
+      "image/webp" = "imv.desktop";
+      "video/mp4" = "mpv.desktop";
+      "video/mkv" = "mpv.desktop";
+      "video/webm" = "mpv.desktop";
+      "x-scheme-handler/mailto" = "betterbird.desktop";
+    };
+  };
+
   # ── Browsers ──────────────────────────────────────────────────────────
   programs.librewolf.enable = true;
 
