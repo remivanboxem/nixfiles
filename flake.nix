@@ -42,7 +42,7 @@
     in
     {
       nixosConfigurations = {
-        thinkpad = mkSystem "thinkpad" "x86_64-linux";
+        # thinkpad = mkSystem "thinkpad" "x86_64-linux";
         dell = mkSystem "dell" "x86_64-linux";
         # server   = mkSystem "server"   "x86_64-linux";
       };
