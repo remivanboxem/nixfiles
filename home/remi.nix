@@ -153,13 +153,11 @@
   };
 
   # ── Browsers ──────────────────────────────────────────────────────────
-  programs.firefox.enable = true;
+  programs.librewolf.enable = true;
 
   # ── Email ─────────────────────────────────────────────────────────────
-  programs.thunderbird = {
-    enable = true;
-    profiles = { };
-  };
+  # (betterbird has no home-manager module; configured through the app)
+  home.packages = [ pkgs.betterbird ];
 
   # home/remi.nix
   programs.nix-index = {
