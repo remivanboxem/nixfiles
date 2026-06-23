@@ -161,6 +161,12 @@
     profiles = { };
   };
 
+  # home/remi.nix
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   # ── Packages ──────────────────────────────────────────────────────────
   home.packages = with pkgs; [
     # CLI utilities
@@ -172,6 +178,7 @@
     jq
     unzip
     zip
+    comma
 
     # Editors
     zed-editor
