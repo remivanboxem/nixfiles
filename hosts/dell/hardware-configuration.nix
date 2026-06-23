@@ -25,25 +25,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/mapper/cryptroot";
-    fsType = "ext4";
-  };
-
-  boot.initrd.luks.devices."cryptroot".device =
-    "/dev/disk/by-uuid/66ebe655-e5ab-49f7-9bd6-5b7a3f48135c";
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/0CA2-6768";
-    fsType = "vfat";
-    options = [
-      "fmask=0022"
-      "dmask=0022"
-    ];
-  };
-
-  swapDevices = [ ];
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.npu.enable = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

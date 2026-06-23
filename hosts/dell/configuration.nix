@@ -8,6 +8,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./disko.nix
     ../../modules/common.nix
     ../../modules/laptop.nix
     ../../modules/sway.nix
