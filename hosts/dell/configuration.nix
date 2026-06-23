@@ -16,10 +16,16 @@
 
   networking.hostName = "se25-285";
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.systemd.enable = true;
-  boot.initrd.kernelModules = [ "i915" ];
+  boot = {
+    initrd = {
+      systemd.enable = true;
+      kernelModules = [ "i915" ];
+    };
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   hardware.graphics = {
     enable = true;
