@@ -221,7 +221,7 @@
     # Communication
     slack
     discord
-    betterbird
+    thunderbird
 
     # Productivity
     bitwarden-desktop
