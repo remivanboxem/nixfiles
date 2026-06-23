@@ -221,7 +221,6 @@
     thunderbird
 
     # Productivity
-    bitwarden-desktop
     libreoffice-fresh
     obsidian
     inkscape
