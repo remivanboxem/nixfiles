@@ -7,11 +7,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       self,
+      disko,
       nixpkgs,
       home-manager,
       ...
@@ -23,6 +28,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
+            disko.nixosModules.disko
             ./hosts/${host}/configuration.nix
             home-manager.nixosModules.home-manager
             {
