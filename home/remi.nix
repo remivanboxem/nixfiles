@@ -80,7 +80,7 @@
     # Git signing
     signing = {
       format = "ssh";
-      key = "~/.ssh/git-signing";
+      key = "${config.home.homeDirectory}/.ssh/git-signing";
       signByDefault = true;
     };
 
