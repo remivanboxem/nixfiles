@@ -153,7 +153,7 @@ in
         ];
         modules-center = [ "sway/window" ];
         modules-right = [
-          "pulseaudio"
+          "wireplumber"
           "network"
           "battery"
           "clock"
@@ -189,7 +189,7 @@ in
           format-disconnected = "Disconnected";
         };
 
-        "pulseaudio" = {
+        "wireplumber" = {
           format = "{icon} {volume}%";
           format-muted = " Muted";
           on-click = "pavucontrol";
