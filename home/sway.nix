@@ -245,6 +245,7 @@ in
           {
             criteria = "Dell Inc. DELL P2715Q 32R1F53S331L";
             mode = "3840x2160@59.997Hz";
+            transform = "90";
             scale = 1.5;
             position = "0,0";
           }
