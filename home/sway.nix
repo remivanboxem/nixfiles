@@ -238,10 +238,10 @@ in
 
   services.kanshi = {
     enable = true;
-    profiles = {
-      # Both external monitors via USB-C daisy-chain
-      docked = {
-        outputs = [
+    settings = [
+      {
+        profile.name = "docked";
+        profile.outputs = [
           {
             criteria = "Dell Inc. DELL P2715Q 32R1F53S331L";
             mode = "3840x2160@60Hz";
@@ -259,10 +259,10 @@ in
             status = "disable";
           }
         ];
-      };
-      # Only the USB-C primary (daisy-chain not connected)
-      single = {
-        outputs = [
+      }
+      {
+        profile.name = "single";
+        profile.outputs = [
           {
             criteria = "Dell Inc. DELL P2725DE 5FR0RB4";
             mode = "2560x1440@100Hz";
@@ -274,17 +274,17 @@ in
             status = "disable";
           }
         ];
-      };
-      # No external monitors
-      undocked = {
-        outputs = [
+      }
+      {
+        profile.name = "undocked";
+        profile.outputs = [
           {
             criteria = "eDP-1";
             status = "enable";
           }
         ];
-      };
-    };
+      }
+    ];
   };
 
   home.packages = with pkgs; [
