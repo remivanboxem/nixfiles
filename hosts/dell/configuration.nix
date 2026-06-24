@@ -39,6 +39,8 @@
     ];
   };
 
+  swapDevices = [ { device = "/swap/swapfile"; } ];
+
   services.fwupd.enable = true;
 
   # boot.kernelParams = lib.mkAfter [ "mem_sleep_default=s2idle" ];
