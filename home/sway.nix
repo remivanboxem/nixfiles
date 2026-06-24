@@ -244,13 +244,13 @@ in
         profile.outputs = [
           {
             criteria = "Dell Inc. DELL P2715Q 32R1F53S331L";
-            mode = "3840x2160@60Hz";
+            mode = "3840x2160@59.997Hz";
             scale = 1.5;
             position = "0,0";
           }
           {
             criteria = "Dell Inc. DELL P2725DE 5FR0RB4";
-            mode = "2560x1440@100Hz";
+            mode = "2560x1440@99.946Hz";
             scale = 1.0;
             position = "2560,0";
           }
@@ -265,7 +265,7 @@ in
         profile.outputs = [
           {
             criteria = "Dell Inc. DELL P2725DE 5FR0RB4";
-            mode = "2560x1440@100Hz";
+            mode = "2560x1440@99.946Hz";
             scale = 1.0;
             position = "0,0";
           }
