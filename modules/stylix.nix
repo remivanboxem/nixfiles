@@ -2,10 +2,11 @@
 {
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
-    image = pkgs.runCommand "bg.png" { nativeBuildInputs = [ pkgs.imagemagick ]; } ''
-      magick -size 1x1 xc:#fbf1c7 PNG:$out
-    '';
+    # Gallery link: https://tinted-theming.github.io/tinted-gallery/
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-light.yaml";
+    # image = pkgs.runCommand "bg.png" { nativeBuildInputs = [ pkgs.imagemagick ]; } ''
+    #   magick -size 1x1 xc:#fbf1c7 PNG:$out
+    # '';
     polarity = "light";
 
     fonts = {
