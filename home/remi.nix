@@ -223,6 +223,7 @@
     # Productivity
     libreoffice-fresh
     obsidian
+    exiftool
     inkscape
 
     # File manager
@@ -285,5 +286,6 @@
 
     # LaTeX
     texlive.combined.scheme-full
+    typst
   ];
 }
