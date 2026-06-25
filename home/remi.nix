@@ -175,9 +175,9 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "text/html" = "librewolf.desktop";
-      "x-scheme-handler/http" = "librewolf.desktop";
-      "x-scheme-handler/https" = "librewolf.desktop";
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
       "application/pdf" = "org.pwmt.zathura.desktop";
       "image/png" = "imv.desktop";
       "image/jpeg" = "imv.desktop";
@@ -186,7 +186,7 @@
       "video/mp4" = "mpv.desktop";
       "video/mkv" = "mpv.desktop";
       "video/webm" = "mpv.desktop";
-      "x-scheme-handler/mailto" = "betterbird.desktop";
+      "x-scheme-handler/mailto" = "thunderbird.desktop";
     };
   };
 
