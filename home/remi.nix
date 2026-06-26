@@ -232,6 +232,7 @@
     # Viewers & media
     imv
     mpv
+    whipper
 
     # Screen recording
     obs-studio
