@@ -250,6 +250,7 @@
     unzip
     zip
     comma
+    just
 
     # Editors
     zed-editor
