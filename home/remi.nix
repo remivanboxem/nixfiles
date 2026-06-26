@@ -265,6 +265,7 @@
     obsidian
     exiftool
     inkscape
+    zotero
 
     # File manager
     yazi
