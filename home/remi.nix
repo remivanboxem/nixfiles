@@ -7,7 +7,10 @@
 }:
 
 {
-  imports = [ ./sway.nix ];
+  imports = [
+    ./sway.nix
+    ./kathara.nix
+  ];
 
   home.username = "remi";
   home.homeDirectory = "/home/remi";
