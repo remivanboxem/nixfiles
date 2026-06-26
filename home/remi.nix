@@ -233,6 +233,8 @@
     imv
     mpv
     whipper
+    picard
+    beets
 
     # Screen recording
     obs-studio
