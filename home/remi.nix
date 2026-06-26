@@ -290,5 +290,8 @@
     # LaTeX
     texlive.combined.scheme-full
     typst
+
+    # MTP
+    jmtpfs
   ];
 }
