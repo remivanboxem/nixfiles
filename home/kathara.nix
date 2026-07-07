@@ -13,7 +13,7 @@
     enable = true;
     manager = "docker";
     image = "kathara/base";
-    terminal = "/usr/bin/foot";
+    terminal = "foot";
     openTerminals = true;
     deviceShell = "/bin/bash";
     netPrefix = "kathara";

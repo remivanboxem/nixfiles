@@ -7,11 +7,13 @@
 
 {
   # Podman
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
-  };
+  # virtualisation.podman = {
+  #   enable = true;
+  #   dockerCompat = true;
+  #   defaultNetwork.settings.dns_enabled = true;
+  # };
+
+  virtualisation.docker.enable = true;
 
   # QEMU/KVM/libvirt
   virtualisation.libvirtd = {

@@ -52,7 +52,7 @@
       g = "git";
       gs = "git status";
       gd = "git diff";
-      docker = "podman";
+      # docker = "podman";
       open = "xdg-open";
     };
   };
@@ -152,7 +152,7 @@
       per_disc_numbering = true;
       asciify_path = true;
       import = {
-        copy = "yes";
+        copy = true;
       };
       plugins = [
         "musicbrainz"
@@ -306,13 +306,19 @@
     # Python
     python3
     uv
+    duckdb
 
     # C toolchain
     gcc
     pkg-config
+    gcc-unwrapped
 
     # Containers
-    podman-compose
+    # podman-compose
+    docker
+
+    # network tools
+    wireshark
 
     # Language servers for Helix (auto-detected when in PATH)
     ruff # Python linter + formatter + LSP

@@ -48,6 +48,7 @@
       "video"
       "audio"
       "networkmanager"
+      "docker"
       "input"
     ];
     shell = pkgs.fish;
@@ -70,7 +71,7 @@
   services.printing = {
     enable = true;
     drivers = with pkgs; [
-      samba            # SMB/CIFS backend for smb:// URIs
+      samba # SMB/CIFS backend for smb:// URIs
       foomatic-db-ppds # PPD database (includes Ricoh IM C5510)
       foomatic-db-engine
     ];
