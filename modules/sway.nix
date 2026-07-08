@@ -23,12 +23,16 @@
     config.common.default = "*";
   };
 
-  services.greetd = {
+  # services.greetd = {
+  #   enable = true;
+  #   settings.default_session = {
+  #     command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
+  #     user = "greeter";
+  #   };
+  # };
+
+  services.displayManager.gdm = {
     enable = true;
-    settings.default_session = {
-      command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
-      user = "greeter";
-    };
   };
 
   security.rtkit.enable = true;
