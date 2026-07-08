@@ -221,7 +221,7 @@
       "text/html" = "firefox.desktop";
       "x-scheme-handler/http" = "firefox.desktop";
       "x-scheme-handler/https" = "firefox.desktop";
-      "application/pdf" = "org.pwmt.zathura.desktop";
+      "application/pdf" = "evince.desktop";
       "image/png" = "imv.desktop";
       "image/jpeg" = "imv.desktop";
       "image/gif" = "imv.desktop";
