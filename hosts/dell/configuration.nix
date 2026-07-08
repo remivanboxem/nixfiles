@@ -9,10 +9,11 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/common.nix
-    ../../modules/stylix.nix
+    #  ../../modules/stylix.nix
     ../../modules/laptop.nix
     ../../modules/sway.nix
     ../../modules/virtualisation.nix
+    ../../modules/gnome.nix
   ];
 
   networking.hostName = "se25-285";
