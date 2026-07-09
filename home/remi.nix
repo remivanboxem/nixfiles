@@ -262,7 +262,9 @@
     # Communication
     slack
     discord
+    sign
     thunderbird
+    teams-for-linux
 
     # Productivity
     libreoffice-fresh
