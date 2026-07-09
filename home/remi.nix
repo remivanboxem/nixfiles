@@ -262,7 +262,7 @@
     # Communication
     slack
     discord
-    sign
+    signal-desktop
     thunderbird
     teams-for-linux
 
