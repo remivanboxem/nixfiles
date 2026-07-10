@@ -346,5 +346,8 @@
 
     # MTP
     jmtpfs
+
+    # Others
+    awscli2
   ];
 }
