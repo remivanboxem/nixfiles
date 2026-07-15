@@ -130,7 +130,7 @@
         XF86AudioNext allow-when-locked=true { spawn-sh "noctalia msg media next"; }
         XF86AudioPrev allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
 
-        // Screenshots → Noctalia
+        // Screenshots
         Print { spawn-sh "noctalia msg screenshot-region"; }
         Mod+Print { spawn-sh "noctalia msg screenshot-fullscreen"; }
         Mod+Shift+Print { spawn-sh "noctalia msg screenshot-fullscreen pick"; }
@@ -192,6 +192,7 @@
         profile.outputs = [
           {
             criteria = "eDP-1";
+            scale = 1.0;
             status = "enable";
           }
         ];
