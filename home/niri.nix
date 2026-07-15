@@ -10,30 +10,25 @@
   imports = [ inputs.noctalia.homeModules.default ];
 
   # ── Noctalia ──────────────────────────────────────────────────────────
-  # Wayland shell: bar, notifications, launcher, control center, lock, etc.
-  # Replaces the old waybar + mako stack. Settings can still be tweaked at
-  # runtime from Noctalia's own settings menu; see https://docs.noctalia.dev/v5.
+  # https://docs.noctalia.dev/v5.
   programs.noctalia = {
     enable = true;
     settings = {
       theme = {
-        mode = "dark";
+        mode = "light";
         source = "builtin";
-        builtin = "Catppuccin";
+        builtin = "Ayu";
       };
     };
   };
 
   # ── Niri ──────────────────────────────────────────────────────────────
-  # Config written as raw KDL (nixpkgs' niri module has no settings option).
-  # Ported from the previous Sway keybindings, including the AZERTY number
-  # row. Outputs are handled by kanshi below (niri speaks the
-  # wlr-output-management protocol kanshi uses).
   xdg.configFile."niri/config.kdl".text = ''
     input {
         keyboard {
             xkb {
-                layout "fr"
+                layout "us"
+                variant "intl"
             }
         }
         touchpad {
@@ -45,7 +40,9 @@
 
     prefer-no-csd
 
-    screenshot-path "~/media/screenshots/screenshot-%Y%m%d-%H%M%S.png"
+    hotkey-overlay {
+        skip-at-startup
+    }
 
     layout {
         gaps 8
@@ -55,19 +52,28 @@
 
     // ── Startup ──
     spawn-at-startup "noctalia"
-    spawn-at-startup "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-    spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
     binds {
-        // Apps
-        Mod+Return { spawn "foot"; }
-        Mod+D { spawn "fuzzel"; }
-        Mod+C { spawn "sh" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"; }
+        Mod+Shift+Slash { show-hotkey-overlay; }
+
+        // Apps & Noctalia panels
+        Mod+Return hotkey-overlay-title="Terminal" { spawn "foot"; }
+        Mod+D hotkey-overlay-title="App launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+        Mod+Space hotkey-overlay-title="App launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+        Mod+V hotkey-overlay-title="Clipboard history" { spawn-sh "noctalia msg panel-toggle clipboard"; }
+        Mod+S hotkey-overlay-title="Control center" { spawn-sh "noctalia msg panel-toggle control-center"; }
+        Mod+W hotkey-overlay-title="Wallpaper picker" { spawn-sh "noctalia msg panel-toggle wallpaper"; }
+        Mod+Shift+E hotkey-overlay-title="Session menu" { spawn-sh "noctalia msg panel-toggle session"; }
+        Mod+Ctrl+L hotkey-overlay-title="Lock" { spawn-sh "noctalia msg session lock"; }
 
         // Window management
         Mod+Q { close-window; }
         Mod+F { fullscreen-window; }
+        Mod+Shift+F { maximize-column; }
+        Mod+C { center-column; }
         Mod+R { switch-preset-column-width; }
+        Mod+Minus { set-column-width "-10%"; }
+        Mod+Equal { set-column-width "+10%"; }
         Mod+Shift+Space { toggle-window-floating; }
         Mod+Comma { consume-window-into-column; }
         Mod+Period { expel-window-from-column; }
@@ -80,45 +86,54 @@
         Mod+Shift+J { move-window-down; }
         Mod+Shift+K { move-window-up; }
         Mod+Shift+L { move-column-right; }
+        Mod+Home { focus-column-first; }
+        Mod+End { focus-column-last; }
 
-        // Workspaces (AZERTY number row — unshifted keysyms)
-        Mod+ampersand   { focus-workspace 1; }
-        Mod+eacute      { focus-workspace 2; }
-        Mod+quotedbl    { focus-workspace 3; }
-        Mod+apostrophe  { focus-workspace 4; }
-        Mod+parenleft   { focus-workspace 5; }
-        Mod+minus       { focus-workspace 6; }
-        Mod+egrave      { focus-workspace 7; }
-        Mod+underscore  { focus-workspace 8; }
-        Mod+ccedilla    { focus-workspace 9; }
-        Mod+Shift+ampersand   { move-column-to-workspace 1; }
-        Mod+Shift+eacute      { move-column-to-workspace 2; }
-        Mod+Shift+quotedbl    { move-column-to-workspace 3; }
-        Mod+Shift+apostrophe  { move-column-to-workspace 4; }
-        Mod+Shift+parenleft   { move-column-to-workspace 5; }
-        Mod+Shift+minus       { move-column-to-workspace 6; }
-        Mod+Shift+egrave      { move-column-to-workspace 7; }
-        Mod+Shift+underscore  { move-column-to-workspace 8; }
-        Mod+Shift+ccedilla    { move-column-to-workspace 9; }
+        // Move a column between monitors
+        Mod+Shift+Ctrl+H { move-column-to-monitor-left; }
+        Mod+Shift+Ctrl+L { move-column-to-monitor-right; }
 
-        // Session
-        Mod+Shift+E { quit; }
-        Mod+Ctrl+L { spawn "loginctl" "lock-session"; }
+        // Workspaces (dynamic, vertical)
+        Mod+U { focus-workspace-down; }
+        Mod+I { focus-workspace-up; }
+        Mod+Ctrl+U { move-column-to-workspace-down; }
+        Mod+Ctrl+I { move-column-to-workspace-up; }
+        Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+        Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+        Mod+1 { focus-workspace 1; }
+        Mod+2 { focus-workspace 2; }
+        Mod+3 { focus-workspace 3; }
+        Mod+4 { focus-workspace 4; }
+        Mod+5 { focus-workspace 5; }
+        Mod+6 { focus-workspace 6; }
+        Mod+7 { focus-workspace 7; }
+        Mod+8 { focus-workspace 8; }
+        Mod+9 { focus-workspace 9; }
+        Mod+Ctrl+1 { move-column-to-workspace 1; }
+        Mod+Ctrl+2 { move-column-to-workspace 2; }
+        Mod+Ctrl+3 { move-column-to-workspace 3; }
+        Mod+Ctrl+4 { move-column-to-workspace 4; }
+        Mod+Ctrl+5 { move-column-to-workspace 5; }
+        Mod+Ctrl+6 { move-column-to-workspace 6; }
+        Mod+Ctrl+7 { move-column-to-workspace 7; }
+        Mod+Ctrl+8 { move-column-to-workspace 8; }
+        Mod+Ctrl+9 { move-column-to-workspace 9; }
 
-        // Screenshots (niri built-in)
-        Print { screenshot; }
-        Mod+Print { screenshot-screen; }
-        Mod+Shift+Print { screenshot-window; }
+        // Media, volume & brightness
+        XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
+        XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia msg volume-down"; }
+        XF86AudioMute allow-when-locked=true { spawn-sh "noctalia msg volume-mute"; }
+        XF86AudioMicMute allow-when-locked=true { spawn-sh "noctalia msg mic-mute"; }
+        XF86MonBrightnessUp allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }
+        XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
+        XF86AudioPlay allow-when-locked=true { spawn-sh "noctalia msg media toggle"; }
+        XF86AudioNext allow-when-locked=true { spawn-sh "noctalia msg media next"; }
+        XF86AudioPrev allow-when-locked=true { spawn-sh "noctalia msg media previous"; }
 
-        // Media & brightness
-        XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "-l" "1.0" "@DEFAULT_AUDIO_SINK@" "5%+"; }
-        XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
-        XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-        XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "set" "+5%"; }
-        XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
-        XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
-        XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
-        XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous"; }
+        // Screenshots → Noctalia
+        Print { spawn-sh "noctalia msg screenshot-region"; }
+        Mod+Print { spawn-sh "noctalia msg screenshot-fullscreen"; }
+        Mod+Shift+Print { spawn-sh "noctalia msg screenshot-fullscreen pick"; }
     }
   '';
 
@@ -131,25 +146,7 @@
     };
   };
 
-  # ── Launcher ──────────────────────────────────────────────────────────
-  programs.fuzzel = {
-    enable = true;
-    settings = {
-      main = {
-        dpi-aware = "auto";
-        width = 35;
-        lines = 10;
-        terminal = "foot";
-      };
-      border = {
-        radius = 4;
-        width = 2;
-      };
-    };
-  };
-
   # ── Output profiles ───────────────────────────────────────────────────
-  # kanshi drives docked/single/undocked auto-switching over niri's IPC.
   services.kanshi = {
     enable = true;
     settings = [
@@ -204,11 +201,6 @@
 
   # ── Wayland utilities ─────────────────────────────────────────────────
   home.packages = with pkgs; [
-    grim
-    slurp
     wl-clipboard
-    brightnessctl
-    playerctl
-    pavucontrol
   ];
 }
