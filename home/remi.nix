@@ -8,7 +8,7 @@
 
 {
   imports = [
-    ./sway.nix
+    ./niri.nix
     ./kathara.nix
   ];
 
@@ -20,18 +20,6 @@
 
   # ── Sync ──────────────────────────────────────────────────────────────
   services.syncthing.enable = true; # port 8384
-
-  # For nightlight
-  services.gammastep = {
-    enable = true;
-    # Brussels
-    latitude = 50.85;
-    longitude = 4.35;
-    temperature = {
-      day = 6500;
-      night = 3500;
-    };
-  };
 
   # ── Shell ─────────────────────────────────────────────────────────────
   programs.direnv = {
@@ -289,13 +277,8 @@
     # Terminal multiplexer
     zellij
 
-    # Clipboard history
-    cliphist
-
-    # System tray & auth
+    # Auth / secrets
     networkmanagerapplet
-    blueman
-    polkit_gnome
     gnome-keyring
 
     # Rust
