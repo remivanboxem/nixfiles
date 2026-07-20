@@ -42,13 +42,10 @@ in
         };
       };
 
-      keybindings = {
+      keybindings = lib.mkOptionDefault {
         "${modifier}+Return" = "exec foot";
-        "${modifier}+q" = "kill";
         "${modifier}+d" = "exec fuzzel";
-        "${modifier}+space" = "exec fuzzel";
         "${modifier}+Shift+space" = "floating toggle";
-        "${modifier}+v" = "splitv";
         "${modifier}+Shift+v" =
           "exec cliphist list | fuzzel --dmenu | cliphist decode | wl-copy";
         "${modifier}+Ctrl+l" = "exec swaylock";
