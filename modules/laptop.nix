@@ -30,9 +30,9 @@
   # };
 
   services.logind = {
-    lidSwitch = "suspend";
-    lidSwitchExternalPower = "suspend";
     settings.Login = {
+      HandleLidSwitch = "suspend";
+      HandleLidSwitchExternalPower = "suspend";
       HandlePowerKey = "suspend";
       IdleAction = "ignore";
     };

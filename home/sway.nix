@@ -106,12 +106,7 @@ in
         resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * power on'";
       }
     ];
-    events = [
-      {
-        event = "before-sleep";
-        command = "${pkgs.swaylock}/bin/swaylock -f";
-      }
-    ];
+    events.before-sleep = "${pkgs.swaylock}/bin/swaylock -f";
   };
 
   # ── Notifications ─────────────────────────────────────────────────────

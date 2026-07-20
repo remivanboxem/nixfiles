@@ -24,6 +24,7 @@
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = true; # keep legacy default (changes to false at stateVersion 26.05)
     documents = "$HOME/docs";
     pictures = "$HOME/media/pictures";
     videos = "$HOME/media/videos";
