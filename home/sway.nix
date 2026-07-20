@@ -17,7 +17,16 @@ in
       inherit modifier;
       terminal = "foot";
       menu = "fuzzel";
-      bars = [ ];
+
+      # Built-in swaybar. Its status line is plain-text i3status (no Nerd
+      # Font glyphs), and swaybar carries its own tray for nm-applet.
+      # Colours come from Stylix.
+      bars = [
+        {
+          statusCommand = "${pkgs.i3status}/bin/i3status";
+          position = "top";
+        }
+      ];
 
       gaps.inner = 8;
 
@@ -76,10 +85,10 @@ in
   };
 
   # ── Status bar ────────────────────────────────────────────────────────
-  programs.waybar = {
-    enable = true;
-    systemd.enable = true; # starts/stops with the Sway session
-  };
+  # swaybar's status line. i3status ships a sane default (disk, load,
+  # memory, network, battery, clock); drop a ~/.config/i3status/config or
+  # set programs.i3status.modules here to customise.
+  programs.i3status.enable = true;
 
   # ── Launcher ──────────────────────────────────────────────────────────
   programs.fuzzel.enable = true;

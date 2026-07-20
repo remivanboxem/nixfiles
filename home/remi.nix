@@ -8,7 +8,7 @@
 
 {
   imports = [
-    ./niri.nix
+    ./sway.nix
     ./kathara.nix
   ];
 
