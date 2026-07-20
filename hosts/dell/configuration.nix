@@ -9,7 +9,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/common.nix
-    #  ../../modules/stylix.nix
+    ../../modules/stylix.nix
     ../../modules/laptop.nix
     ../../modules/niri.nix
     ../../modules/virtualisation.nix
